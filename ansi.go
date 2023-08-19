@@ -4,36 +4,36 @@ const (
 	Esc   = "\x1b"
 	Reset = Esc + "[0m" // reset; clears all colors and styles (to white on black)
 
-	Bold = esc + "[1m" // bold on
-	Italics = esc + "[3m" // italics on
-	Underline = esc + "[4m" // underline on
-	Inverse = esc + "[7m" // inverse on; reverses foreground & background colors
-	Strike = esc + "[9m" // strikethrough on
+	Bold = Esc + "[1m" // bold on
+	Italics = Esc + "[3m" // italics on
+	Underline = Esc + "[4m" // underline on
+	Inverse = Esc + "[7m" // inverse on; reverses foreground & background colors
+	Strike = Esc + "[9m" // strikethrough on
 
-	BoldOff      = esc + "[22m" // bold off
-	ItalicsOff   = esc + "[23m" // italics off
-	UnderlineOff = esc + "[24m" // underline off
-	InverseOff   = esc + "[27m" // inverse off
-	StrikeOff    = esc + "[29m" // strikethrough off
+	BoldOff      = Esc + "[22m" // bold off
+	ItalicsOff   = Esc + "[23m" // italics off
+	UnderlineOff = Esc + "[24m" // underline off
+	InverseOff   = Esc + "[27m" // inverse off
+	StrikeOff    = Esc + "[29m" // strikethrough off
 
-	Black   = esc + "[30m" // set foreground color to black
-	Red     = esc + "[31m" // set foreground color to red
-	Green   = esc + "[32m" // set foreground color to green
-	Yellow  = esc + "[33m" // set foreground color to yellow
-	Blue    = esc + "[34m" // set foreground color to blue
-	Magenta = esc + "[35m" // set foreground color to magenta
-	Cyan    = esc + "[36m" // set foreground color to cyan
-	White   = esc + "[37m" // set foreground color to white
-	Default = esc + "[39m" // set foreground color to default
+	Black   = Esc + "[30m" // set foreground color to black
+	Red     = Esc + "[31m" // set foreground color to red
+	Green   = Esc + "[32m" // set foreground color to green
+	Yellow  = Esc + "[33m" // set foreground color to yellow
+	Blue    = Esc + "[34m" // set foreground color to blue
+	Magenta = Esc + "[35m" // set foreground color to magenta
+	Cyan    = Esc + "[36m" // set foreground color to cyan
+	White   = Esc + "[37m" // set foreground color to white
+	Default = Esc + "[39m" // set foreground color to default
 
-	BgBlack   = esc + "[40m" // set background color to black
-	BgRed     = esc + "[41m" // set background color to red
-	BgGreen   = esc + "[42m" // set background color to green
-	BgYellow  = esc + "[43m" // set background color to yellow
-	BgBlue    = esc + "[44m" // set background color to blue
-	BgMagenta = esc + "[45m" // set background color to magenta
-	BgCyan    = esc + "[46m" // set background color to cyan
-	BgWhite   = esc + "[47m" // set background color to white
-	BgDefault = esc + "[49m" // set background color to default
+	BgBlack   = Esc + "[40m" // set background color to black
+	BgRed     = Esc + "[41m" // set background color to red
+	BgGreen   = Esc + "[42m" // set background color to green
+	BgYellow  = Esc + "[43m" // set background color to yellow
+	BgBlue    = Esc + "[44m" // set background color to blue
+	BgMagenta = Esc + "[45m" // set background color to magenta
+	BgCyan    = Esc + "[46m" // set background color to cyan
+	BgWhite   = Esc + "[47m" // set background color to white
+	BgDefault = Esc + "[49m" // set background color to default
 )
 
