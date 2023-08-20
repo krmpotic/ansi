@@ -11,8 +11,10 @@ const (
 	Invert
 	Hide
 	Strike
+)
 
-	Font0
+const (
+	Font0 = Sgr(10 + iota)
 	Font1
 	Font3
 	Font4
@@ -22,8 +24,10 @@ const (
 	Font8
 	Font9
 	Font10
+)
 
-	Fraktur
+const (
+	Fraktur = Sgr(20 + iota)
 	DoubleUnderline
 	NormalIntensity
 	NoItalic
@@ -33,8 +37,10 @@ const (
 	NoInvert
 	NoHide
 	NoStrike
+)
 
-	Black
+const (
+	Black = Sgr(30 + iota)
 	Red
 	Green
 	Yellow
@@ -44,8 +50,10 @@ const (
 	White
 	fgColor
 	FgDefault
+)
 
-	BgBlack
+const (
+	BgBlack = Sgr(40 + iota)
 	BgRed
 	BgGreen
 	BgYellow
@@ -64,6 +72,8 @@ const (
 	Overline
 	NoFrame
 	NoOverline
+	_
+	_
 	ulColor // underline color (not in standard)
 	UlDefault
 )
