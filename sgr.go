@@ -12,7 +12,7 @@ const (
 	Hide
 	Strike
 
-	Font0 = sgr(10 + iota)
+	Font0
 	Font1
 	Font3
 	Font4
@@ -23,7 +23,7 @@ const (
 	Font9
 	Font10
 
-	Fraktur = sgr(20 + iota)
+	Fraktur
 	DoubleUnderline
 	NormalIntensity
 	NoItalic
@@ -34,8 +34,7 @@ const (
 	NoHide
 	NoStrike
 
-	// set foreground color
-	Black = sgr(30 + iota)
+	Black
 	Red
 	Green
 	Yellow
@@ -43,11 +42,10 @@ const (
 	Magenta
 	Cyan
 	White
-	fgColor // use Color8 / ColorRGB functions instead
+	fgColor
 	FgDefault
 
-	// set background color
-	BgBlack = sgr(40 + iota)
+	BgBlack
 	BgRed
 	BgGreen
 	BgYellow
@@ -55,9 +53,11 @@ const (
 	BgMagenta
 	BgCyan
 	BgWhite
-	bgColor // use BgColor8 / BgColorRGB functions instead
+	bgColor
 	BgDefault
+)
 
+const (
 	_ = sgr(50 + iota)
 	Frame
 	Encircle
@@ -66,18 +66,24 @@ const (
 	NoOverline
 	ulColor // underline color (not in standard)
 	UlDefault
+)
 
+const (
 	IdeoRight = sgr(60 + iota)
 	IdeoDoubleRight
 	IdeoLeft
 	IdeoDoubleLeft
 	IdeoStress
 	NoIdeo
+)
 
+const (
 	Superscript = sgr(73 + iota)
 	Subscript
 	NoScript
+)
 
+const (
 	FgBright0 = sgr(90 + iota)
 	FgBright1
 	FgBright2
@@ -86,7 +92,9 @@ const (
 	FgBright5
 	FgBright6
 	FgBright7
+)
 
+const (
 	BgBright0 = sgr(100 + iota)
 	BgBright1
 	BgBright2
@@ -95,7 +103,9 @@ const (
 	BgBright5
 	BgBright6
 	BgBright7
+)
 
+const (
 	sgrMask  = sgr(0b0111_1111)
 	colorRGB = sgr(0b1000_0000)
 )
