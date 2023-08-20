@@ -40,7 +40,7 @@ func (s sgr) parameter() string {
 		str += strconv.Itoa(g) + ";"
 		str += strconv.Itoa(b)
 	} else { // 8-bit color
-		c := int(0xffff&(s>>8))
+		c := int(0xffff & (s >> 8))
 
 		str += ";5;"
 		str += strconv.Itoa(c)
