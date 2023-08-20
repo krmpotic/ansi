@@ -96,6 +96,6 @@ const (
 	BgBright6
 	BgBright7
 
-	sgrMask  = sgr(0x00_00_00_07)
-	colorRGB = sgr(0x8) // bit 0x8 set for RGB colors
+	sgrMask  = sgr(0b0111_1111)
+	colorRGB = sgr(0b1000_0000)
 )
