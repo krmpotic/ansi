@@ -31,9 +31,9 @@ func (s sgr) parameter() string {
 	}
 
 	if s&colorRGB != 0 { // RGB
-		r := int((s & (0xf << 8)) >> 8)
-		g := int((s & (0xf << 16)) >> 16)
-		b := int((s & (0xf << 24)) >> 24)
+		r := int((s & (0xff << 8)) >> 8)
+		g := int((s & (0xff << 16)) >> 16)
+		b := int((s & (0xff << 24)) >> 24)
 
 		str += ";2;"
 		str += strconv.Itoa(r) + ";"
@@ -57,15 +57,15 @@ func (s sgr) Paint(str string) string {
 }
 
 func Color8(i uint8) sgr {
-	return fgColor | sgr(i<<8)
+	return fgColor | sgr(uint32(i)<<8)
 }
 
 func BgColor8(i uint8) sgr {
-	return bgColor | sgr(i<<8)
+	return bgColor | sgr(uint32(i)<<8)
 }
 
 func UlColor8(i uint8) sgr {
-	return ulColor | sgr(i<<8)
+	return ulColor | sgr(uint32(i)<<8)
 }
 
 func ColorRGB(r, g, b uint8) sgr {
