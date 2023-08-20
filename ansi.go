@@ -1,39 +1,102 @@
 package ansi
 
+import "strconv"
+
+// en.wikipedia.org/wiki/ANSI_escape_code
+// man 4 console_codes
+
+// superuser.com/a/301355
+var Readline bool
+
 const (
-	Esc   = "\x1b"
-	Reset = Esc + "[0m" // reset; clears all colors and styles (to white on black)
-
-	Bold = Esc + "[1m" // bold on
-	Italics = Esc + "[3m" // italics on
-	Underline = Esc + "[4m" // underline on
-	Inverse = Esc + "[7m" // inverse on; reverses foreground & background colors
-	Strike = Esc + "[9m" // strikethrough on
-
-	BoldOff      = Esc + "[22m" // bold off
-	ItalicsOff   = Esc + "[23m" // italics off
-	UnderlineOff = Esc + "[24m" // underline off
-	InverseOff   = Esc + "[27m" // inverse off
-	StrikeOff    = Esc + "[29m" // strikethrough off
-
-	Black   = Esc + "[30m" // set foreground color to black
-	Red     = Esc + "[31m" // set foreground color to red
-	Green   = Esc + "[32m" // set foreground color to green
-	Yellow  = Esc + "[33m" // set foreground color to yellow
-	Blue    = Esc + "[34m" // set foreground color to blue
-	Magenta = Esc + "[35m" // set foreground color to magenta
-	Cyan    = Esc + "[36m" // set foreground color to cyan
-	White   = Esc + "[37m" // set foreground color to white
-	Default = Esc + "[39m" // set foreground color to default
-
-	BgBlack   = Esc + "[40m" // set background color to black
-	BgRed     = Esc + "[41m" // set background color to red
-	BgGreen   = Esc + "[42m" // set background color to green
-	BgYellow  = Esc + "[43m" // set background color to yellow
-	BgBlue    = Esc + "[44m" // set background color to blue
-	BgMagenta = Esc + "[45m" // set background color to magenta
-	BgCyan    = Esc + "[46m" // set background color to cyan
-	BgWhite   = Esc + "[47m" // set background color to white
-	BgDefault = Esc + "[49m" // set background color to default
+	readlineStart = "\x01"
+	readlineStop  = "\x02"
 )
 
+const (
+	CSI = "\033[" // control sequence introducer
+)
+
+// SGR (Select Graphic Rendition) parameters
+// control sequence CSI n m
+type sgr uint32
+
+func (s sgr) parameter() string {
+	n := s & sgrMask
+	str := strconv.Itoa(int(n))
+
+	// normal, easy parameter
+	if n != fgColor && n != bgColor && n != ulColor {
+		return str
+	}
+
+	if s&colorRGB != 0 { // RGB
+		r := int((s & (0xf << 8)) >> 8)
+		g := int((s & (0xf << 16)) >> 16)
+		b := int((s & (0xf << 24)) >> 24)
+
+		str += "2;"
+		str += strconv.Itoa(r) + ";"
+		str += strconv.Itoa(g) + ";"
+		str += strconv.Itoa(b)
+	} else { // 8-bit color
+		c := int((s & 0xff_00) >> 8)
+
+		str += "5;"
+		str += strconv.Itoa(c)
+	}
+	return str
+}
+
+func (s sgr) String() string {
+	return Style{s}.String()
+}
+
+func Color8(i uint8) sgr {
+	return fgColor | sgr(i<<8)
+}
+
+func BgColor8(i uint8) sgr {
+	return bgColor | sgr(i<<8)
+}
+
+func UlColor8(i uint8) sgr {
+	return ulColor | sgr(i<<8)
+}
+
+func ColorRGB(r, g, b uint8) sgr {
+	return fgColor | colorRGB |
+		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+}
+
+func BgColorRGB(r, g, b uint8) sgr {
+	return bgColor | colorRGB |
+		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+}
+
+func UlColorRGB(r, g, b uint8) sgr {
+	return ulColor | colorRGB |
+		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+}
+
+type Style []sgr
+
+func (s Style) String() string {
+	str := ""
+	if Readline {
+		str += readlineStart
+	}
+
+	for i := range s {
+		str += CSI + s[i].parameter() + "m"
+	}
+
+	if Readline {
+		str += readlineStop
+	}
+	return str
+}
+
+func (s Style) Paint(str string) string {
+	return s.String() + str + Reset.String()
+}
