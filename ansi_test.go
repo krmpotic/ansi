@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestConstants (t *testing.T) {
+func TestConstants(t *testing.T) {
 	input := []sgr{
 		Red, Yellow, Encircle,
 		BgGreen,
