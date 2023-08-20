@@ -35,14 +35,14 @@ func (s sgr) parameter() string {
 		g := int((s & (0xf << 16)) >> 16)
 		b := int((s & (0xf << 24)) >> 24)
 
-		str += "2;"
+		str += ";2;"
 		str += strconv.Itoa(r) + ";"
 		str += strconv.Itoa(g) + ";"
 		str += strconv.Itoa(b)
 	} else { // 8-bit color
-		c := int((s & 0xff_00) >> 8)
+		c := int(0xffff&(s>>8))
 
-		str += "5;"
+		str += ";5;"
 		str += strconv.Itoa(c)
 	}
 	return str
