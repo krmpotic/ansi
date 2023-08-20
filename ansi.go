@@ -52,6 +52,10 @@ func (s sgr) String() string {
 	return Style{s}.String()
 }
 
+func (s sgr) Paint(str string) string {
+	return s.String() + str + Reset.String()
+}
+
 func Color8(i uint8) sgr {
 	return fgColor | sgr(i<<8)
 }
