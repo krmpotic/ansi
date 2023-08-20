@@ -48,6 +48,15 @@ func (s sgr) parameter() string {
 	return str
 }
 
+/*
+func Sgr(i int) (sgr, bool) {
+	if i < 0 || i >= 128 || sgr(i) == fgColor || sgr(i) == bgColor || sgr(i) == ulColor {
+		return 0, false
+	}
+	return sgr(i), true
+}
+*/
+
 func (s sgr) String() string {
 	return Style{s}.String()
 }
@@ -69,18 +78,15 @@ func UlColor8(i uint8) sgr {
 }
 
 func ColorRGB(r, g, b uint8) sgr {
-	return fgColor | colorRGB |
-		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+	return fgColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
 func BgColorRGB(r, g, b uint8) sgr {
-	return bgColor | colorRGB |
-		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+	return bgColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
 func UlColorRGB(r, g, b uint8) sgr {
-	return ulColor | colorRGB |
-		sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+	return ulColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
 type Style []sgr
