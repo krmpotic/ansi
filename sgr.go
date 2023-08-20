@@ -1,7 +1,7 @@
 package ansi
 
 const (
-	Reset = sgr(iota)
+	Reset = Sgr(iota)
 	Bold
 	Faint
 	Italic
@@ -58,7 +58,7 @@ const (
 )
 
 const (
-	_ = sgr(50 + iota)
+	_ = Sgr(50 + iota)
 	Frame
 	Encircle
 	Overline
@@ -69,7 +69,7 @@ const (
 )
 
 const (
-	IdeoRight = sgr(60 + iota)
+	IdeoRight = Sgr(60 + iota)
 	IdeoDoubleRight
 	IdeoLeft
 	IdeoDoubleLeft
@@ -78,13 +78,13 @@ const (
 )
 
 const (
-	Superscript = sgr(73 + iota)
+	Superscript = Sgr(73 + iota)
 	Subscript
 	NoScript
 )
 
 const (
-	FgBright0 = sgr(90 + iota)
+	FgBright0 = Sgr(90 + iota)
 	FgBright1
 	FgBright2
 	FgBright3
@@ -95,7 +95,7 @@ const (
 )
 
 const (
-	BgBright0 = sgr(100 + iota)
+	BgBright0 = Sgr(100 + iota)
 	BgBright1
 	BgBright2
 	BgBright3
@@ -106,6 +106,6 @@ const (
 )
 
 const (
-	sgrMask  = sgr(0b0111_1111)
-	colorRGB = sgr(0b1000_0000)
+	sgrMask  = Sgr(0b0111_1111)
+	colorRGB = Sgr(0b1000_0000)
 )

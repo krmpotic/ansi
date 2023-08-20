@@ -19,9 +19,9 @@ const (
 
 // SGR (Select Graphic Rendition) parameters
 // control sequence CSI n m
-type sgr uint32
+type Sgr uint32
 
-func (s sgr) parameter() string {
+func (s Sgr) parameter() string {
 	n := s & sgrMask
 	str := strconv.Itoa(int(n))
 
@@ -57,39 +57,39 @@ func Sgr(i int) (sgr, bool) {
 }
 */
 
-func (s sgr) String() string {
+func (s Sgr) String() string {
 	return Style{s}.String()
 }
 
-func (s sgr) Paint(str string) string {
+func (s Sgr) Paint(str string) string {
 	return s.String() + str + Reset.String()
 }
 
-func Color8(i uint8) sgr {
-	return fgColor | sgr(uint32(i)<<8)
+func Color8(i uint8) Sgr {
+	return fgColor | Sgr(uint32(i)<<8)
 }
 
-func BgColor8(i uint8) sgr {
-	return bgColor | sgr(uint32(i)<<8)
+func BgColor8(i uint8) Sgr {
+	return bgColor | Sgr(uint32(i)<<8)
 }
 
-func UlColor8(i uint8) sgr {
-	return ulColor | sgr(uint32(i)<<8)
+func UlColor8(i uint8) Sgr {
+	return ulColor | Sgr(uint32(i)<<8)
 }
 
-func ColorRGB(r, g, b uint8) sgr {
-	return fgColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+func ColorRGB(r, g, b uint8) Sgr {
+	return fgColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
-func BgColorRGB(r, g, b uint8) sgr {
-	return bgColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+func BgColorRGB(r, g, b uint8) Sgr {
+	return bgColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
-func UlColorRGB(r, g, b uint8) sgr {
-	return ulColor | colorRGB | sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
+func UlColorRGB(r, g, b uint8) Sgr {
+	return ulColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
-type Style []sgr
+type Style []Sgr
 
 func (s Style) String() string {
 	str := ""

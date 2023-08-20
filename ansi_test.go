@@ -5,7 +5,7 @@ import (
 )
 
 func TestConstants(t *testing.T) {
-	input := []sgr{
+	input := []Sgr{
 		Red, Yellow, Encircle,
 		BgGreen,
 	}
