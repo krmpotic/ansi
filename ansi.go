@@ -106,12 +106,6 @@ func BgColor8(i uint8) Sgr {
 	return bgColor | Sgr(uint32(i)<<8)
 }
 
-// UlColor8 returns an Sgr parameter that encodes an 8-bit underline color i.
-// Not supported on most terminals.
-func UlColor8(i uint8) Sgr {
-	return ulColor | Sgr(uint32(i)<<8)
-}
-
 // ColorRGB returns an Sgr parameter that encodes a RGB foreground color.
 func ColorRGB(r, g, b uint8) Sgr {
 	return fgColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
@@ -120,11 +114,6 @@ func ColorRGB(r, g, b uint8) Sgr {
 // BgColorRGB returns an Sgr parameter that encodes a RGB background color.
 func BgColorRGB(r, g, b uint8) Sgr {
 	return bgColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
-}
-
-// UlColorRGB returns an Sgr parameter that encodes a RGB underline color.
-func UlColorRGB(r, g, b uint8) Sgr {
-	return ulColor | colorRGB | Sgr(uint32(r)<<8|uint32(g)<<16|uint32(b)<<24)
 }
 
 // type Style is set of different SGR-parameters

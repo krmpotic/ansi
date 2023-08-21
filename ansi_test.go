@@ -62,26 +62,6 @@ func TestBgColor8(t *testing.T) {
 		}
 	}
 }
-func TestUlColor8(t *testing.T) {
-	in := []uint8{
-		3,
-		113,
-		0,
-		255,
-	}
-	out := []string{
-		"\033[58;5;3m",
-		"\033[58;5;113m",
-		"\033[58;5;0m",
-		"\033[58;5;255m",
-	}
-
-	for i := range in {
-		if str := UlColor8(in[i]).String(); str != out[i] {
-			t.Fatalf("UlColor8(%d) = %q != %q\n", in[i], str, out[i])
-		}
-	}
-}
 func TestColorRGB(t *testing.T) {
 	in := [][3]uint8{
 		{3, 15, 200},
@@ -121,27 +101,6 @@ func TestBgColorRGB(t *testing.T) {
 		r, g, b := in[i][0], in[i][1], in[i][2]
 		if str := BgColorRGB(r, g, b).String(); str != out[i] {
 			t.Fatalf("BgColorRGB(%d, %d, %d) = %q != %q\n", r, g, b, str, out[i])
-		}
-	}
-}
-func TestUlColorRGB(t *testing.T) {
-	in := [][3]uint8{
-		{3, 15, 200},
-		{113, 200, 10},
-		{0, 255, 13},
-		{255, 13, 16},
-	}
-	out := []string{
-		"\033[58;2;3;15;200m",
-		"\033[58;2;113;200;10m",
-		"\033[58;2;0;255;13m",
-		"\033[58;2;255;13;16m",
-	}
-
-	for i := range in {
-		r, g, b := in[i][0], in[i][1], in[i][2]
-		if str := UlColorRGB(r, g, b).String(); str != out[i] {
-			t.Fatalf("UlColorRGB(%d, %d, %d) = %q != %q\n", r, g, b, str, out[i])
 		}
 	}
 }
